@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="900px" height="600px"></canvas>
+    <button id="btn">stop</button>
+</body>
+<script src="./GameSprite.js"></script>
+<script src="./GameObject.js"></script>
+<script src="./main.js"></script>
+<script>
+    window.onload = function () {
+        var SCM = new ScenceManager("#canvas");
+        SCM.start();
+
+        var btn = document.querySelector("#btn");
+        btn.onclick = function () {
+            // debugger
+            if (SCM.switch()) {
+                SCM.start();
+                this.innerText = "stop"
+            } else {
+                this.innerText = "start"
+            }
+        }
+        
+    }
+</script>
+
+</html>
