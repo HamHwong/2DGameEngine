@@ -10,27 +10,39 @@
 
 <body>
     <canvas id="canvas" width="900px" height="600px"></canvas>
+
     <button id="btn">stop</button>
+    <span id="display"></span>
+    <input type="range" id="fps" min="1" max="24" value="5">
 </body>
 <script src="./GameSprite.js"></script>
 <script src="./GameObject.js"></script>
-<script src="./main.js"></script>
+<script src="./GameManager.js"></script>
 <script>
     window.onload = function () {
-        var SCM = new ScenceManager("#canvas");
-        SCM.start();
+        var GM = new GameManager("#canvas");
+        GM.start();
 
         var btn = document.querySelector("#btn");
         btn.onclick = function () {
             // debugger
-            if (SCM.switch()) {
-                SCM.start();
+            if (GM.switch()) {
+                GM.start();
                 this.innerText = "stop"
             } else {
                 this.innerText = "start"
             }
         }
-        
+
+        var fps = document.querySelector("#fps");
+        var display = document.querySelector("#display");
+        display.innerHTML = fps.value;
+        fps.oninput = e => {
+            GM.fps = e.target.value
+            display.innerHTML = fps.value;
+            console.log(e.target.value)
+        }
+
     }
 </script>
 
